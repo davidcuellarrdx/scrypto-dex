@@ -17,7 +17,7 @@ TAKE_FROM_WORKTOP
     Decimal("10")
     Bucket("bucket_a");
 
-# Call add liquidity method
+# Call remove liquidity method
 CALL_METHOD 
     Address("${component_add}") # Component_address
     "remove_liquidity" # "method_name"

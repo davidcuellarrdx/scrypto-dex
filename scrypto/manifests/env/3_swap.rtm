@@ -17,7 +17,7 @@ TAKE_FROM_WORKTOP
     Decimal("120")
     Bucket("bucket_a");
 
-# Call add liquidity method
+# Call swap method
 CALL_METHOD 
     Address("${component_add}") # Component_address
     "swap" # "method_name"
