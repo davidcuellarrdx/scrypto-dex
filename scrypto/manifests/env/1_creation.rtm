@@ -1,0 +1,10 @@
+# Instructions for locking fee
+CALL_METHOD 
+    Address("${account_add1}") #Primary account
+    "lock_fee"
+    Decimal("10");
+
+CALL_FUNCTION 
+    Address("${package_add}") 
+    "ScryptoDex" 
+    "instantiate_scrypto_dex";

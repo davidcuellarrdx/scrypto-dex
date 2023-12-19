@@ -1,0 +1,80 @@
+# Instructions for locking fee
+CALL_METHOD 
+    Address("${account_add1}") #Primary account
+    "lock_fee"
+    Decimal("100");
+
+# Withdraw BTC from primary account
+CALL_METHOD
+    Address("${account_add1}") #Primary account
+    "withdraw"
+    Address("${BTC}") # BTC address
+    Decimal("1000");
+
+# Withdraw LTC from primary account
+CALL_METHOD
+    Address("${account_add1}") #Primary account
+    "withdraw"
+    Address("${LTC}") # LTC address
+    Decimal("500");
+
+# Withdraw XRP from primary account
+CALL_METHOD
+    Address("${account_add1}") #Primary account
+    "withdraw"
+    Address("${XRP}") # XRP address
+    Decimal("2000");
+
+# Withdraw DOGE from primary account
+CALL_METHOD
+    Address("${account_add1}") #Primary account
+    "withdraw"
+    Address("${DOGE}") # DOGE address
+    Decimal("1500");
+
+# Put the XRD from worktop into bucket_a
+TAKE_FROM_WORKTOP 
+    Address("${BTC}") # XRD address
+    Decimal("1000") 
+    Bucket("bucket_a");
+
+# Put the BTC from worktop into bucket_b
+TAKE_FROM_WORKTOP
+    Address("${LTC}") # BTC address
+    Decimal("500")
+    Bucket("bucket_b");
+
+# Put the XRD from worktop into bucket_a
+TAKE_FROM_WORKTOP 
+    Address("${XRP}") # XRD address
+    Decimal("2000") 
+    Bucket("bucket_c");
+
+# Put the BTC from worktop into bucket_b
+TAKE_FROM_WORKTOP
+    Address("${DOGE}") # BTC address
+    Decimal("1500")
+    Bucket("bucket_d");
+
+
+# Call add liquidity method
+CALL_METHOD 
+    Address("${component_add}") # Component_address
+    "add_liquidity" # "method_name"
+    Bucket("bucket_a")
+    Bucket("bucket_b");
+
+# Call add liquidity method
+CALL_METHOD 
+    Address("${component_add}") # Component_address
+    "add_liquidity" # "method_name"
+    Bucket("bucket_c")
+    Bucket("bucket_d");
+
+# Because we withdrew tokens from our account and they could still be on the
+# worktop, we have to deposit them back into your account
+CALL_METHOD
+    Address("${account_add1}") #Primary account
+    "deposit_batch"
+    Expression("ENTIRE_WORKTOP");
+

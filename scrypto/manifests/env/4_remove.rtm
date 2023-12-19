@@ -1,0 +1,32 @@
+# Instructions for locking fee
+CALL_METHOD 
+    Address("${account_add1}") # Account
+    "lock_fee"
+    Decimal("10");
+
+# Withdraw LP-BTC-LTC token from primary account
+CALL_METHOD
+    Address("${account_add1}") # Account
+    "withdraw"
+    Address("resource_sim1t58l9u5tx97ce49cwwa9vttq9r88vugjg43fafle9h2k9u97ew36w6") # LP-BTC-LTC address
+    Decimal("10");
+    
+# Put the LP-BTC-LTC token from worktop into bucket_a
+TAKE_FROM_WORKTOP
+    Address("resource_sim1t58l9u5tx97ce49cwwa9vttq9r88vugjg43fafle9h2k9u97ew36w6") # LP-BTC-LTC address
+    Decimal("10")
+    Bucket("bucket_a");
+
+# Call add liquidity method
+CALL_METHOD 
+    Address("${component_add}") # Component_address
+    "remove_liquidity" # "method_name"
+    Bucket("bucket_a");
+
+# Because we withdrew tokens from our account and they could still be on the
+# worktop, we have to deposit them back into your account
+CALL_METHOD
+    Address("${account_add1}") # Account
+    "deposit_batch"
+    Expression("ENTIRE_WORKTOP");
+
