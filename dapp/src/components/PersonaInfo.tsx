@@ -1,5 +1,5 @@
 // PersonaInfo.tsx
-import React from 'react';
+import React from "react";
 
 interface Account {
   // Define the Account type based on your application's structure
@@ -14,7 +14,12 @@ interface PersonaInfoProps {
   selectedAccount: number | null;
 }
 
-const PersonaInfo: React.FC<PersonaInfoProps> = ({ label, accounts, setSelectAccount, selectedAccount }) => {
+const PersonaInfo: React.FC<PersonaInfoProps> = ({
+  label,
+  accounts,
+  setSelectAccount,
+  selectedAccount,
+}) => {
   return (
     <div>
       <h2>Persona: {label}</h2>
@@ -24,16 +29,23 @@ const PersonaInfo: React.FC<PersonaInfoProps> = ({ label, accounts, setSelectAcc
           {accounts.map((account, index) => (
             <div
               key={index}
-              style={{ cursor: 'pointer', marginBottom: 10 }}
+              style={{ cursor: "pointer", marginBottom: 10 }}
               onClick={() => setSelectAccount(index)}
             >
-              <input type="radio" readOnly checked={selectedAccount === index} />
+              <input
+                type="radio"
+                readOnly
+                checked={selectedAccount === index}
+              />
               {account.label}
             </div>
           ))}
         </div>
       ) : (
-        <h4>Click on the Wallet button and update data sharing and choose at least 1 account.</h4>
+        <h4>
+          Click on the Wallet button and update data sharing and choose at least
+          1 account.
+        </h4>
       )}
     </div>
   );
