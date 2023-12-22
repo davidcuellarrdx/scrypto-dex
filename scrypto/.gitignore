@@ -1,5 +1,4 @@
 /target
 /manifests/no_env
-/tests
 /manifests/env/old
 /.vscode

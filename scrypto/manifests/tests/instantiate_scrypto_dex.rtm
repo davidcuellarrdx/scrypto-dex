@@ -1,0 +1,5 @@
+CALL_FUNCTION
+    Address("package_rdx1p5n8qgf24qq7wxlxg7u2fyjfcrq860vsqnh9hv8neak98n40afwkas")
+    "ScryptoDex"
+    "instantiate_scrypto_dex"
+;
